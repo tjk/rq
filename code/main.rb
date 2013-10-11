@@ -55,7 +55,8 @@ module RQ
           html += "<span class=\"#{admin_stat == 'UP' ? 'green' : 'red'}\">#{admin_stat}</span>:"
           html += "<span class=\"#{oper_stat  == 'UP' ? 'green' : 'red'}\">#{oper_stat}</span>"
           html += "</td>"
-          html += "<td>#{msgs_labels.zip(qc.num_messages.values_at(*msgs_labels)).map{|ab| ab.join ':'}.join ' ' }</td>"
+          values = qc.num_messages.values_at(*msgs_labels)
+          values.each { |value| html += "<td class=\"centered\">#{value}</td>" }
           html += "<td>#{qc.ping}</td>"
           html += "<td>#{qc.read_pid}</td>"
           html += "<td>#{qc.uptime}</td>"
